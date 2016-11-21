@@ -1,0 +1,35 @@
+version: '2'
+services:
+  cables-service:
+    image: lnls/docker-cables-service-wildfly
+    ports:
+      - "8086:8080"
+      - "9996:9990"
+      - "8447:8443"
+    container_name: cables-service
+    depends_on:
+      - cables-postgres
+    entrypoint: /wait-for-it.sh
+    command: cables-postgres:5432 -- /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+    networks:
+      - postgres-cables
+
+  cables-postgres:
+    image: lnls/docker-cables-postgres
+    ports:
+      - "5436:5432"
+    container_name: cables-postgres
+    volumes:
+      - cables-postgres-volume:/var/lib/postgresql/data
+    networks:
+      - postgres-cables
+    env_file: env-vars/cables-postgres-vars.env
+
+volumes:
+  cables-postgres-volume:
+    driver: local
+
+networks:
+  postgres-cables:
+    external:
+      name: dockerrbaccomposed_postgres-rbac
