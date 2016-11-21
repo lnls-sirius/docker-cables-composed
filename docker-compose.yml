@@ -6,6 +6,7 @@ services:
       - "8086:8080"
       - "9996:9990"
       - "8447:8443"
+      - "8090:8090"
     container_name: cables-service
     depends_on:
       - cables-postgres
