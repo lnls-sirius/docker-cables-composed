@@ -1,7 +1,7 @@
 version: '2'
 services:
   cables-service:
-    image: lnls/docker-cables-service-wildfly
+    image: lnls/docker-cables-wildfly
     ports:
       - "8086:8080"
       - "9996:9990"
