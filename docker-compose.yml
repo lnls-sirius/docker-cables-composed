@@ -14,13 +14,14 @@ services:
         - 10.0.0.71
         - 10.0.0.72
     extra_hosts:
-      - "sirius-rbac-auth.lnls.br:172.18.0.3"
-      - "sirius-rbac.lnls.br:172.18.0.4"
-      - "sirius-ns.lnls.br:172.18.0.6"
+      - "sirius-rbac-auth.lnls.br:172.60.0.3"
+      - "sirius-rbac.lnls.br:172.60.0.4"
+      - "sirius-ns.lnls.br:172.60.0.6"
     entrypoint: /docker-entrypoint.sh
     command: cables-postgres:5432 -- /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
     networks:
-      - postgres-cables
+      postgres-cables:
+       ipv4_address: 172.60.0.7
     env_file: env-vars/cables-wildfly-vars.env
 
   cables-postgres:
@@ -31,7 +32,8 @@ services:
     volumes:
       - cables-postgres-volume:/var/lib/postgresql/data
     networks:
-      - postgres-cables
+      postgres-cables:
+       ipv4_address: 172.60.0.107
     env_file: env-vars/cables-postgres-vars.env
 
 volumes:
