@@ -1,4 +1,4 @@
-version: '2'
+version: '3.4'
 services:
   cables-service:
     image: lnls/docker-cables-wildfly:2.2.8
