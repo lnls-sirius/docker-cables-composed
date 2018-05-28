@@ -43,4 +43,4 @@ volumes:
 networks:
   postgres-cables:
     external:
-      name: dockerrbaccomposed_postgres-rbac
+      name: docker-rbac-composed_postgres-rbac
