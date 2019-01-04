@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   cables-service:
-    image: lnls/docker-cables-wildfly:2.2.8-1
+    image: lnls/docker-cables-wildfly:2.3.0
     ports:
       - "8086:8080"
       - "9996:9990"
@@ -25,7 +25,7 @@ services:
     env_file: env-vars/cables-wildfly-vars.env
 
   cables-postgres:
-    image: lnls/docker-cables-postgres:2.2.8-1
+    image: lnls/docker-cables-postgres:2.3.0
     ports:
       - "5436:5432"
     container_name: cables-postgres
